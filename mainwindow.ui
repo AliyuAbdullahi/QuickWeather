@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>845</width>
+    <height>540</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">#Form{
+	background-color: lightblue
+}</string>
+  </property>
+  <widget class="QWidget" name="form">
+   <property name="styleSheet">
+    <string notr="true">#form {
+	background-image: url(:/images/rain_1.png);
+}</string>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0,1,0">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,2,0,0">
+      <item>
+       <widget class="QLabel" name="localTime">
+        <property name="styleSheet">
+         <string notr="true">#localTime {
+	color: white;
+	font-family: &quot;Lucida Console&quot;, &quot;Courier New&quot;, monospace;
+	font-weight: bold;
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="enterNameLabel">
+        <property name="styleSheet">
+         <string notr="true">#enterNameLabel {
+	color: white;
+	font-family: &quot;Lucida Console&quot;, &quot;Courier New&quot;, monospace;
+	font-weight: bold;
+}</string>
+        </property>
+        <property name="text">
+         <string>Enter City</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="placeSearch">
+        <property name="styleSheet">
+         <string notr="true">QLineEdit:focus {
+    selection-color: white;   
+    border: 2px groove gray;
+    border-radius: 10px;
+    padding: 2px 4px;
+}
+
+QLineEdit:edit-focus {
+    selection-color: white;   
+    border: 2px groove gray;
+    border-radius: 10px;
+    padding: 2px 4px;
+}</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <spacer name="verticalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="0">
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout" stretch="2,0,0,2,1,2">
+        <item alignment="Qt::AlignHCenter">
+         <widget class="QLabel" name="placeLabel">
+          <property name="styleSheet">
+           <string notr="true">#placeLabel {
+	font-size: 25px;
+	color: white;
+	color: white;
+	font-family: &quot;Lucida Console&quot;, &quot;Courier New&quot;, monospace;
+	font-weight: bold;
+}</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_3"/>
+        </item>
+        <item alignment="Qt::AlignHCenter">
+         <widget class="QLabel" name="temperature">
+          <property name="styleSheet">
+           <string notr="true">#temperature {
+	font-size: 60px;
+	color: white;
+	color: white;
+	font-family: &quot;Lucida Console&quot;, &quot;Courier New&quot;, monospace;
+	font-weight: bold;
+}</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item alignment="Qt::AlignHCenter">
+         <widget class="QLabel" name="description">
+          <property name="styleSheet">
+           <string notr="true">#description{
+	color: white;
+	font-family: &quot;Lucida Console&quot;, &quot;Courier New&quot;, monospace;
+	font-weight: bold;
+	font-size: 14px;
+}</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>17</width>
+            <height>13</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,2,2,2,0,1">
+          <item>
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item alignment="Qt::AlignHCenter">
+           <widget class="QLabel" name="morningTemp">
+            <property name="styleSheet">
+             <string notr="true">#wind { 
+	color: white;
+	font-family: &quot;Lucida Console&quot;, &quot;Courier New&quot;, monospace;
+	font-size: 14px;
+}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item alignment="Qt::AlignHCenter">
+           <widget class="QLabel" name="noonTemp">
+            <property name="styleSheet">
+             <string notr="true">#visibility{
+	color: white;
+	font-family: &quot;Lucida Console&quot;, &quot;Courier New&quot;, monospace;
+	font-size: 14px;
+}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item alignment="Qt::AlignHCenter">
+           <widget class="QLabel" name="nightTemp">
+            <property name="styleSheet">
+             <string notr="true">#pressure {
+	color: white;
+	font-family: &quot;Lucida Console&quot;, &quot;Courier New&quot;, monospace;
+	font-size: 14px;
+}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="humidity">
+            <property name="styleSheet">
+             <string notr="true">#humidity {
+	color: white;
+	font-family: &quot;Lucida Console&quot;, &quot;Courier New&quot;, monospace;
+	font-size: 14px;
+}
+</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QListWidget" name="weatherList"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>845</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

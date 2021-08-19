@@ -2,10 +2,14 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include<QMessageBox>
+#include <QListWidgetItem>
+#include <iostream>
+#include <thread>
 #include "ui/WeatherSummaryView.h"
 #include "ui/weathersummarypresenter.h"
-#include <QListWidgetItem>
 #include "globals/apputil.h"
+#include "globals/Constants.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -29,7 +33,7 @@ public:
     void showToday(const Weather &weather) override;
     void showCityInfo(const City &city) override;
     void showLoadingMessage(QString const &message) override;
-     void hideLoadingMessage() override;
+    void hideLoadingMessage() override;
 
 private slots:
     void on_placeSearch_returnPressed();

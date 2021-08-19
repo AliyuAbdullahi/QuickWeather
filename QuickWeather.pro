@@ -19,6 +19,7 @@ SOURCES += \
     ui/weathersummarypresenter.cpp
 
 HEADERS += \
+    globals/Constants.h \
     globals/Logger.h \
     ui/Isubscriber.h \
     globals/UrlBuilder.h \

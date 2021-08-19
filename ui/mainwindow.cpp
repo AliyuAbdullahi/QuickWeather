@@ -1,7 +1,5 @@
 #include "ui/mainwindow.h"
 #include "ui_mainwindow.h"
-#include <iostream>
-#include <thread>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -28,7 +26,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::showWeathreLIst(const QVector<Weather> &weatherList)
 {
-    if (!weatherList.isEmpty()) {
+    if (!weatherList.isEmpty())
+    {
         showToday(weatherList.at(0));
         ui->weatherList->clear();
         for (int i = 0; i < weatherList.size(); i++)
@@ -38,12 +37,14 @@ void MainWindow::showWeathreLIst(const QVector<Weather> &weatherList)
             item->setTextAlignment(Qt::AlignCenter);
             item->setText(AppUtil::getSummarizedWeatherInfo(weather));
 
-            ui->weatherList->setStyleSheet(
-              "QListWidget::item {border-style: solid; border-width:4px;selection-color: green;border-color:black; background-color:grey}"
-            );
+            ui->weatherList->setStyleSheet(LIST_ITEM_BACKGROUND);
 
             ui->weatherList->addItem(item);
         }
+    }
+    else
+    {
+       ui->statusbar->showMessage(NO_WEATHER_LIST_FOUND);
     }
 }
 

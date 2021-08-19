@@ -38,7 +38,7 @@ void WeatherSummaryPresenter::requestWeatherDataForPlace(const QString &place)
 void WeatherSummaryPresenter::saveSearchedPlace(const QString &placeName)
 {
     std::string utf8_text = placeName.toUtf8().constData();
-    std::ofstream stream("place.txt");
+    std::ofstream stream(SEARCHED_PLACE_TEXT_FILE);
     stream << utf8_text;
     stream.close();
 }
@@ -49,7 +49,7 @@ QString WeatherSummaryPresenter::getSavedPlace()
     mutex.lock();
     auto result = std::async(std::launch::async, [=]{
         std::string place;
-        std::ifstream stream("place.txt");
+        std::ifstream stream(SEARCHED_PLACE_TEXT_FILE);
         if (stream.is_open())  {
             stream >> place;
             stream.close();

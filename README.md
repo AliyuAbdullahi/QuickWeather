@@ -9,7 +9,7 @@
 Be sure to complete these two before running the installation process. 
 * Clone the Repository to your local machine. 
 * Open the Qt Creator, select file -> open project
-	* navigate to the directory of this project.
+	* navigate to the directory of this project and select QuickWeather.pro file to open the projec in the editor.
 	* navigate to `Headers/globals/Constants.h` and paste the obtained API key in the empty string assigned to the `const QString API_KEY`
 	#### Running The Application
 	##### Build Tool: qmake and make

@@ -6,10 +6,21 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     presenter = new WeatherSummaryPresenter(*this);
+    qTimer = new QTimer(this);
+
+    networkManager = new QNetworkAccessManager(this);
+
     ui->setupUi(this);
     ui->weatherList->setFlow(QListView::LeftToRight);
     ui->weatherList->setItemAlignment(Qt::AlignCenter);
-    connect(ui->weatherList, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(on_listItem_clicked(QListWidgetItem*)));
+    connect(networkManager, &QNetworkAccessManager::finished, this, &MainWindow::dataObtained);
+    connect(ui->weatherList, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(onSelect()));
+    connect(qTimer, SIGNAL(timeout()), this, SLOT(onShowTime()));
+    qTimer->start(1000);
+    QString place = presenter->getSavedPlace();
+    if (!place.isEmpty()) {
+       presenter->requestWeatherDataForPlace(place);
+    }
 }
 
 /**
@@ -73,15 +84,47 @@ void MainWindow::hideLoadingMessage()
     ui->statusbar->showMessage("");
 }
 
+void MainWindow::makeRequest(const QString &path)
+{
+    request.setUrl(QUrl(path));
+    networkManager->get(request);
+}
+
+void MainWindow::onSelect()
+{
+    auto currentItem = ui->weatherList->currentRow();
+    presenter->onItemSelected(currentItem);
+}
+
+void MainWindow::onShowTime()
+{
+    QTime time = QTime::currentTime();
+    QString timeText = time.toString("hh : mm : ss");
+    ui->localTime->setText("⏰ " + timeText);
+}
+
+
 void MainWindow::on_placeSearch_returnPressed()
 {
     showLoadingMessage("🔎Searching for " + ui->placeSearch->text() + "...");
     presenter->requestWeatherDataForPlace(QString(ui->placeSearch->text()));
 }
 
-void MainWindow::on_listItem_clicked(QListWidgetItem *item)
+void MainWindow::dataObtained(QNetworkReply *reply)
 {
-    auto position = ui->weatherList->row(item);
-    presenter->onItemSelected(position);
+    std::unique_ptr<QNetworkReply, NetworkReplyDeleteDelegate> guard_reply(reply);
+    if (reply->error())
+    {
+        QString errorMessage = reply->errorString();
+        Logger::error(errorMessage);
+
+        return;
+    }
+
+    QString answer = reply->readAll();
+    QJsonDocument jsonResponse = QJsonDocument::fromJson(answer.toUtf8());
+    QJsonObject theObject = jsonResponse.object();
+    presenter->processData(theObject);
+    showLoadingMessage("");
 }
 

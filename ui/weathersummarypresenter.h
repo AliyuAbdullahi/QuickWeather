@@ -1,19 +1,18 @@
 #ifndef WEATHERSUMMARYPRESENTER_H
 #define WEATHERSUMMARYPRESENTER_H
 
+#include <QByteArray>
+#include <QFile>
+#include <QTextStream>
 #include <QString>
-#include <future>
-#include <thread>
-#include <mutex>
-#include <fstream>
-#include <relays/publishrelay.h>
-#include "ui/Isubscriber.h"
+#include <QJsonObject>
 #include "models/WeatherResponse.h"
-#include "globals/appsingleton.h"
+#include "globals/UrlBuilder.h"
 #include "globals/Logger.h"
+#include "parser/jsonobjectparser.h"
 #include "ui/WeatherSummaryView.h"
 
-class WeatherSummaryPresenter : public Isubscriber
+class WeatherSummaryPresenter
 {
 public:
     WeatherSummaryPresenter(WeatherSummaryView &view);
@@ -22,14 +21,13 @@ public:
     void requestWeatherDataForPlace(QString const &place);
     void onItemSelected(int position);
     void saveSearchedPlace(QString const &placeName);
+    void showFileFailedToLoadLogMessage();
+    void processData(QJsonObject &data);
     QString getSavedPlace();
 
 private:
     WeatherSummaryView *weatherSummaryView;
-
-    // Isubscriber interface
-public:
-    void accept(const WeatherResponse &data) override;
+    QVector<Weather> weatherList;
 };
 
 #endif // WEATHERSUMMARYPRESENTER_H

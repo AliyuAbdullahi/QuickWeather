@@ -19,7 +19,6 @@ struct WeatherResponse {
 
         return string;
     }
-
 };
 
 #endif // WEATHERRESPONSE_H

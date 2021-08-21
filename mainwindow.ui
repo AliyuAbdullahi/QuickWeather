@@ -26,7 +26,21 @@
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0,1,0">
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,2,0,0">
+     <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,1,2,0,0">
+      <item>
+       <widget class="QLabel" name="time">
+        <property name="styleSheet">
+         <string notr="true">#time {
+	color: white;
+	font-family: &quot;Courier New&quot;, monospace;
+	font-weight: bold;
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
       <item>
        <widget class="QLabel" name="localTime">
         <property name="styleSheet">
@@ -59,7 +73,7 @@
         <property name="styleSheet">
          <string notr="true">#enterNameLabel {
 	color: white;
-	font-family: &quot;Lucida Console&quot;, &quot;Courier New&quot;, monospace;
+	font-family: &quot;Courier New&quot;, monospace;
 	font-weight: bold;
 }</string>
         </property>
@@ -113,7 +127,7 @@ QLineEdit:edit-focus {
 	font-size: 25px;
 	color: white;
 	color: white;
-	font-family: &quot;Lucida Console&quot;, &quot;Courier New&quot;, monospace;
+	font-family: &quot;Courier New&quot;, monospace;
 	font-weight: bold;
 }</string>
           </property>
@@ -132,7 +146,7 @@ QLineEdit:edit-focus {
 	font-size: 60px;
 	color: white;
 	color: white;
-	font-family: &quot;Lucida Console&quot;, &quot;Courier New&quot;, monospace;
+	font-family:&quot;Courier New&quot;, monospace;
 	font-weight: bold;
 }</string>
           </property>
@@ -146,7 +160,7 @@ QLineEdit:edit-focus {
           <property name="styleSheet">
            <string notr="true">#description{
 	color: white;
-	font-family: &quot;Lucida Console&quot;, &quot;Courier New&quot;, monospace;
+	font-family: &quot;Courier New&quot;, monospace;
 	font-weight: bold;
 	font-size: 14px;
 }</string>
@@ -189,7 +203,7 @@ QLineEdit:edit-focus {
             <property name="styleSheet">
              <string notr="true">#wind { 
 	color: white;
-	font-family: &quot;Lucida Console&quot;, &quot;Courier New&quot;, monospace;
+	font-family: &quot;Courier New&quot;, monospace;
 	font-size: 14px;
 }</string>
             </property>
@@ -203,7 +217,7 @@ QLineEdit:edit-focus {
             <property name="styleSheet">
              <string notr="true">#visibility{
 	color: white;
-	font-family: &quot;Lucida Console&quot;, &quot;Courier New&quot;, monospace;
+	font-family: &quot;Courier New&quot;, monospace;
 	font-size: 14px;
 }</string>
             </property>
@@ -217,7 +231,7 @@ QLineEdit:edit-focus {
             <property name="styleSheet">
              <string notr="true">#pressure {
 	color: white;
-	font-family: &quot;Lucida Console&quot;, &quot;Courier New&quot;, monospace;
+	font-family: &quot;Courier New&quot;, monospace;
 	font-size: 14px;
 }</string>
             </property>
@@ -231,7 +245,7 @@ QLineEdit:edit-focus {
             <property name="styleSheet">
              <string notr="true">#humidity {
 	color: white;
-	font-family: &quot;Lucida Console&quot;, &quot;Courier New&quot;, monospace;
+	font-family: &quot;Courier New&quot;, monospace;
 	font-size: 14px;
 }
 </string>
@@ -261,7 +275,11 @@ QLineEdit:edit-focus {
      </layout>
     </item>
     <item>
-     <widget class="QListWidget" name="weatherList"/>
+     <widget class="QListWidget" name="weatherList">
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>

@@ -2,11 +2,7 @@
 
 WeatherSummaryPresenter::WeatherSummaryPresenter(WeatherSummaryView &view) : weatherSummaryView(&view)
 {
-    AppSingleton::getInstance().relay.subscribe(*this);
-    QString place = getSavedPlace();
-    if (!place.isEmpty()) {
-        requestWeatherDataForPlace(place);
-    }
+
 }
 
 /**
@@ -25,47 +21,54 @@ WeatherSummaryPresenter::~WeatherSummaryPresenter()
 
 void WeatherSummaryPresenter::onItemSelected(int position)
 {
-    auto data = AppSingleton::getInstance().repository.getSavedData();
-    weatherSummaryView->showToday(data.weatherList[position]);
+    weatherSummaryView->showToday(weatherList[position]);
 }
 
 void WeatherSummaryPresenter::requestWeatherDataForPlace(const QString &place)
 {
-    AppSingleton::getInstance().repository.requestWeatherData(place);
-    saveSearchedPlace(place);
+    weatherSummaryView->makeRequest(WeatherSearchUrlBuilder::buildWeatherApiUrl(place));
 }
 
 void WeatherSummaryPresenter::saveSearchedPlace(const QString &placeName)
 {
-    std::string utf8_text = placeName.toUtf8().constData();
-    std::ofstream stream(SEARCHED_PLACE_TEXT_FILE);
-    stream << utf8_text;
-    stream.close();
+    QFile file(SEARCHED_PLACE_TEXT_FILE);
+    if (file.open(QIODevice::OpenModeFlag::WriteOnly)) {
+        QTextStream stream(&file);
+        stream << placeName;
+        file.close();
+    } else {
+        showFileFailedToLoadLogMessage();
+    }
+}
+
+void WeatherSummaryPresenter::showFileFailedToLoadLogMessage() {
+    QString errorKey = "FILE_OPEN";
+    QString errorMessage = "Failed to openFile " + SEARCHED_PLACE_TEXT_FILE;
+    Logger::debug(errorKey, errorMessage);
+}
+
+void WeatherSummaryPresenter::processData(QJsonObject &data)
+{
+    auto result = JsonObjectParser::parseWeatherObject(data);
+    weatherSummaryView->showWeathreLIst(result.weatherList);
+    weatherSummaryView->showToday(result.weatherList[0]);
+    weatherSummaryView->showCityInfo(result.city);
+    weatherList = result.weatherList;
 }
 
 QString WeatherSummaryPresenter::getSavedPlace()
 {
-    std::mutex mutex;
-    mutex.lock();
-    auto result = std::async(std::launch::async, [=]{
-        std::string place;
-        std::ifstream stream(SEARCHED_PLACE_TEXT_FILE);
-        if (stream.is_open())  {
-            stream >> place;
-            stream.close();
-        } else {
-            Logger::debug("File Not saved");
-        }
-        return place;
-    });
-    mutex.unlock();
+    QString place;
 
-    return QString::fromUtf8(result.get().c_str());
-}
+    QFile file(SEARCHED_PLACE_TEXT_FILE);
 
-void WeatherSummaryPresenter::accept(const WeatherResponse &data)
-{
-    weatherSummaryView->hideLoadingMessage();
-    weatherSummaryView->showCityInfo(data.city);
-    weatherSummaryView->showWeathreLIst(data.weatherList);
+    if (file.open(QIODevice::OpenModeFlag::ReadOnly)) {
+        QTextStream stream(&file);
+        place = stream.readLine();
+        file.close();
+    } else {
+        showFileFailedToLoadLogMessage();
+    }
+
+    return place;
 }

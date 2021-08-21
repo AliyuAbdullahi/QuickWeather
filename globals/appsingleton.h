@@ -14,7 +14,6 @@ private:
 
 public:
     static AppSingleton& getInstance();
-    WeatherRepository repository;
     QString weatherUrlPath(QString const &place);
     PublishRelay relay;
 

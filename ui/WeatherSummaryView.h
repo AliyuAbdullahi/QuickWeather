@@ -13,6 +13,7 @@ public:
     virtual void showToday(Weather const &weather) = 0;
     virtual void showCityInfo(City const &city) = 0;
     virtual void showLoadingMessage(QString const &message) = 0;
+    virtual void makeRequest(QString const &path) = 0;
     virtual void hideLoadingMessage() = 0;
 };
 

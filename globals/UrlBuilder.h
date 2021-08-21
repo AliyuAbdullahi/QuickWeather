@@ -5,7 +5,7 @@
 
 struct WeatherSearchUrlBuilder {
 
-    QString buildWeatherApiUrl(QString const &place) {
+    static QString buildWeatherApiUrl(QString const &place) {
         return "https://api.openweathermap.org/data/2.5/forecast/daily?q=" + place + "&cnt=7&appid=" + API_KEY;
     }
 };

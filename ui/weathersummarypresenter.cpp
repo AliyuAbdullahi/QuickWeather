@@ -1,9 +1,6 @@
 #include "weathersummarypresenter.h"
 
-WeatherSummaryPresenter::WeatherSummaryPresenter(WeatherSummaryView &view) : weatherSummaryView(&view)
-{
-
-}
+WeatherSummaryPresenter::WeatherSummaryPresenter(WeatherSummaryView &view) : weatherSummaryView(&view), weatherList(std::make_shared<QVector<Weather>>()){}
 
 /**
  * Smart Pointers isn't used here because Qt favor raw pointers on UI
@@ -21,7 +18,7 @@ WeatherSummaryPresenter::~WeatherSummaryPresenter()
 
 void WeatherSummaryPresenter::onItemSelected(int position)
 {
-    weatherSummaryView->showToday(weatherList[position]);
+    weatherSummaryView->showToday(weatherList->at(position));
 }
 
 void WeatherSummaryPresenter::requestWeatherDataForPlace(const QString &place)
@@ -53,7 +50,8 @@ void WeatherSummaryPresenter::processData(QJsonObject &data)
     weatherSummaryView->showWeathreLIst(result.weatherList);
     weatherSummaryView->showToday(result.weatherList[0]);
     weatherSummaryView->showCityInfo(result.city);
-    weatherList = result.weatherList;
+    weatherList->clear();
+    weatherList->append(result.weatherList);
 }
 
 QString WeatherSummaryPresenter::getSavedPlace()

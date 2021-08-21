@@ -15,7 +15,11 @@
 class WeatherSummaryPresenter
 {
 public:
-    WeatherSummaryPresenter(WeatherSummaryView &view);
+    WeatherSummaryPresenter(WeatherSummaryView &view);                               // constructor
+    WeatherSummaryPresenter(const WeatherSummaryPresenter&) = default;               // Copy constructor
+    WeatherSummaryPresenter(WeatherSummaryPresenter&&) = default;                    // Move constructor
+    WeatherSummaryPresenter& operator=(const WeatherSummaryPresenter&) = default;    // Copy assignment operator
+    WeatherSummaryPresenter& operator=(WeatherSummaryPresenter&&) = default;         // Move assignment operator
     ~ WeatherSummaryPresenter();
 
     void requestWeatherDataForPlace(QString const &place);
@@ -27,7 +31,7 @@ public:
 
 private:
     WeatherSummaryView *weatherSummaryView;
-    QVector<Weather> weatherList;
+    std::shared_ptr<QVector<Weather>> weatherList;
 };
 
 #endif // WEATHERSUMMARYPRESENTER_H

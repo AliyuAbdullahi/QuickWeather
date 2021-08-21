@@ -17,7 +17,6 @@ SOURCES += \
 HEADERS += \
     globals/Constants.h \
     globals/Logger.h \
-    ui/Isubscriber.h \
     globals/UrlBuilder.h \
     models/WeatherObject.h \
     globals/apputil.h \

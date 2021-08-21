@@ -33,6 +33,12 @@ public:
     ~MainWindow();
 
 private:
+    /**
+     * I am using raw pointer as Qt Framework favour raw pointers.
+     * <a href="https://stackoverflow.com/questions/34433435/why-dont-the-official-qt-examples-and-tutorials-use-smart-pointers">
+     * See this stack overflow reply
+     * </a>
+     */
     Ui::MainWindow *ui;
     WeatherSummaryPresenter* presenter;
     QTimer *qTimer;

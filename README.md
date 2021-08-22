@@ -43,10 +43,10 @@ Be sure to complete these two before running the installation process.
 	* **WeatherObjectResponse.h** => This is a composition of City object and WeatherObject. Aggrigating both to a single object. 
 * **parser/** => Contains file for parsing the obtained QJsonObject to usable WeatherObjectResponse. 
 	* **jsonobjectparser.h** => Every Model object has a mechanism for parsing it from QJsonObject, JsonObjectParser `struct` parses the obtained QJsonObject from the server to WeatherObjectResponse object. 
-* **ui/** => The UI provides the mechanism for displaying the information to the user of QuickWeather app.
+* **ui/** => The UI provides the mechanism for displaying the weather information to the user of QuickWeather app.
 	[Remember the Architecture](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter) 
 	* **WeatherSummaryView.h** => An abstraction that represents behavior of the UI. 
-	*  **mainwindow.h, mainwindow.cpp** => This is implements WeatherSummaryView's pure virtual functions. It also knows about the view presenter, that is _WeatherSummaryPresenter_. 
+	*  **mainwindow.h, mainwindow.cpp** => This is an implementation of the WeatherSummaryView's pure virtual functions. It send events to the view presenter, that is _WeatherSummaryPresenter_ and display the result of processed event. An example of event is place search.
 	* **_NetworkReplyDeleteDelegate_** => This is a templated class used for cleaning the `QNetworkReplay*`. From [QFrameWork Documentation](https://doc.qt.io/qt-5/qnetworkreply.html), developers are responsible for cleaning up the `QNetworkReplay*`. 
 	* **weathersummarypresenter.h, weathersummarypresenter.cpp** => Performs the UI logics such as
 		* Saving last searched location

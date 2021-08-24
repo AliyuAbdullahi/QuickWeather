@@ -76,4 +76,4 @@ The app takes input from the user (place) and displays the weather for the enter
 * The project uses scope / Resource Acquisition Is Initialization (RAII) where appropriate. See `WeatherSummaryPresenter`. 
 * The project follows the Rule of 5: For non Qt objects such as weathersummarypresenter.h rule of 5 is defined. Some rules set to default because the view object is a Qt object, manual copying is complicated and not needed. 
 * The project uses move semantics to move data, instead of copying it, where possible, see `jsonobjectparser.h`.
-* The project uses smart pointers instead of raw pointers, see `weathersummarypresenter.h`. 
+* The project uses smart pointers instead of raw pointers for non-QObjects, see `weathersummarypresenter.h`. 

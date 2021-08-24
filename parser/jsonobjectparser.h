@@ -22,12 +22,12 @@ struct JsonObjectParser
         {
             QJsonObject object = v.toObject();
             Weather weather = Weather::fromJson(object);
-            weatherList.emplace_back(weather);
+            weatherList.append(weather);
         }
 
         WeatherResponse response;
         response.city = std::move(city);
-        response.weatherList = std::move(weatherList);
+        response.weatherList = weatherList;
 
         return response;
     }

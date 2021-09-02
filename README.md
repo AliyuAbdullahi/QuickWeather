@@ -1,6 +1,5 @@
 
 ## How to Build
-* Visit [Open weather](https://openweathermap.org/forecast16) and get a developer api key. 
 * Download [QT Framework (Version 6.1.2)](https://www.qt.io/download) for your platform. Select the Open source installer. 
 	* Select Qt version 6.1.2 during the installation process.  
 > For linux OS, make sure your system is up to date by running 
@@ -53,27 +52,3 @@ Be sure to complete these two before running the installation process.
 		* Provides logic for processing selected day so the information can be displayed as main. 
 	* **mainwindow.ui**=> This is a form editor. Used for static design of the applicaiton user interface. 
 * **_main.cpp_** => This is the entry point to the QT application. 
-
-### Rubric Points
-#### Loops, Functions I/O
-In `WeatherResponse.h`, a for-loop is used to log every weather object to the console in the `toString()` function. 
-The project is Architected using MVP Architecture. functions are organised withing classes. Check `WeatherSummaryPresenter`. 
-The app takes input from the user (place) and displays the weather for the entered location. 
-#### Object Oriented Programming
-* The project uses Object Oriented Programming techniques. See `weathersummarypresenter.h` , `weathersummarypresenter.cpp ` `mainwindow.cpp`. 
-* Classes use appropriate access specifiers for class members..
-* Class constructors utilize member initialization lists, see `weathersummarypresenter.cpp`. 
-* Classes abstract implementation details from their interfaces, see 	`mainwindow.h`.
-* Classes encapsulate behavior. State is accessed via functions. See `weathersummarypresenter.h` and `weathersummarypresenter.cpp`. 
-* Classes follow an appropriate inheritance hierarchy, see `WeatherSummaryView.h` and `mainwindow.h`.
-* Overloaded functions allow the same function to operate on different parameters. See `Logger.h`. 
-* Derived class functions override virtual base class functions. See `WeatherSummaryView.h`
-* Templates generalize functions in the project, see `NetworkReplyDeleteDelegate.h`. 
-
-#### Memory Management
-* The project makes use of references in function declarations. See the models such as `City.h`.
-* The project uses destructors appropriately. See `mainwindow.cpp` -> `MainWindow::~MainWindow()`. 
-* The project uses scope / Resource Acquisition Is Initialization (RAII) where appropriate. See `WeatherSummaryPresenter`. 
-* The project follows the Rule of 5: For non Qt objects such as weathersummarypresenter.h rule of 5 is defined. Some rules set to default because the view object is a Qt object, manual copying is complicated and not needed. 
-* The project uses move semantics to move data, instead of copying it, where possible, see `jsonobjectparser.h`.
-* The project uses smart pointers instead of raw pointers for non-QObjects, see `weathersummarypresenter.h`. 

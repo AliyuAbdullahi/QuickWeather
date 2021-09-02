@@ -12,13 +12,13 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->setupUi(this);
     ui->weatherList->setFlow(QListView::LeftToRight);
-    ui->weatherList->setItemAlignment(Qt::AlignCenter);
     connect(networkManager, &QNetworkAccessManager::finished, this, &MainWindow::dataObtained);
     connect(ui->weatherList, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(onSelect()));
     connect(qTimer, SIGNAL(timeout()), this, SLOT(onShowTime()));
     qTimer->start(1000);
     QString place = presenter->getSavedPlace();
-    if (!place.isEmpty()) {
+    if (!place.isEmpty())
+    {
        presenter->requestWeatherDataForPlace(place);
     }
 }
